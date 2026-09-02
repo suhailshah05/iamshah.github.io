@@ -3,24 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="iamshah — Creative Digital Professional specializing in Video Editing, Graphic Design, AI Content, WordPress, Social Media and Business Automation.">
+
+<meta name="description" content="IAMSHAH — Suhail Shah. Video Editing, Graphic Design, AI Content, WordPress, Social Media, Business Automation and Digital Marketing.">
 <meta name="author" content="Suhail Shah">
-<title>iamshah — Creative Digital Professional</title>
+<meta name="theme-color" content="#050505">
+
+<title>IAMSHAH — Creative Digital Professional</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* =========================================================
+   IAMSHAH — COMPLETE SINGLE FILE WEBSITE
+   HTML + CSS + JAVASCRIPT
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root{
     --bg:#050505;
-    --bg2:#0b0b0b;
-    --card:#101010;
-    --card2:#151515;
+    --bg-soft:#090909;
+    --card:#0d0d0d;
+    --card2:#111111;
     --text:#ffffff;
-    --muted:#999999;
-    --line:rgba(255,255,255,.09);
-    --accent:#ffffff;
-    --accent2:#888888;
-    --green:#25d366;
+    --muted:#8d8d8d;
+    --muted2:#5f5f5f;
+    --line:rgba(255,255,255,.10);
+    --line2:rgba(255,255,255,.17);
+    --accent:#dfff45;
+    --purple:#8d5cff;
+    --green:#25D366;
     --max:1180px;
 }
 
@@ -28,42 +39,44 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
     scroll-behavior:smooth;
+    scroll-padding-top:90px;
 }
 
 body{
     background:var(--bg);
     color:var(--text);
-    font-family:Inter, sans-serif;
+    font-family:"DM Sans",sans-serif;
     overflow-x:hidden;
 }
 
-body::before{
+/* Noise */
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.025;
+    z-index:9999;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ambient lights */
+body:after{
     content:"";
     position:fixed;
     width:500px;
     height:500px;
     border-radius:50%;
-    background:rgba(255,255,255,.035);
-    filter:blur(100px);
-    top:-200px;
-    left:-150px;
+    background:rgba(223,255,69,.035);
+    filter:blur(120px);
+    right:-250px;
+    top:30%;
     pointer-events:none;
-    z-index:-1;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    width:450px;
-    height:450px;
-    border-radius:50%;
-    background:rgba(255,255,255,.025);
-    filter:blur(100px);
-    bottom:-200px;
-    right:-150px;
-    pointer-events:none;
-    z-index:-1;
+    z-index:-2;
 }
 
 a{
@@ -81,54 +94,88 @@ button{
 }
 
 section{
-    padding:110px 0;
     position:relative;
+    padding:120px 0;
 }
 
-.section-label{
-    color:#777;
-    text-transform:uppercase;
-    letter-spacing:3px;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:16px;
+/* =========================================================
+   LOADER
+   ========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity .7s, visibility .7s;
 }
 
-.section-title{
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-inner{
+    text-align:center;
+}
+
+.loader-logo{
     font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(35px,5vw,65px);
-    line-height:1;
-    letter-spacing:-2px;
-    margin-bottom:25px;
+    font-size:42px;
+    font-weight:700;
+    letter-spacing:-3px;
 }
 
-.section-title span{
-    color:#777;
+.loader-logo span{
+    color:var(--accent);
 }
 
-.section-description{
-    max-width:650px;
-    color:var(--muted);
-    line-height:1.8;
+.loader-line{
+    width:140px;
+    height:2px;
+    background:#222;
+    margin:20px auto 0;
+    overflow:hidden;
 }
 
-/* NAVBAR */
+.loader-line:after{
+    content:"";
+    display:block;
+    height:100%;
+    width:50%;
+    background:var(--accent);
+    animation:loader 1.1s infinite ease-in-out;
+}
+
+@keyframes loader{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(300%)}
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
 
 .navbar{
     position:fixed;
-    top:0;
     left:0;
+    top:0;
     width:100%;
     height:76px;
-    z-index:1000;
-    background:rgba(5,5,5,.72);
-    backdrop-filter:blur(20px);
+    z-index:5000;
+    background:rgba(5,5,5,.68);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
     border-bottom:1px solid transparent;
     transition:.3s;
 }
 
 .navbar.scrolled{
     border-bottom-color:var(--line);
+    background:rgba(5,5,5,.9);
 }
 
 .nav-inner{
@@ -140,35 +187,52 @@ section{
 
 .logo{
     font-family:"Space Grotesk",sans-serif;
-    font-weight:700;
     font-size:24px;
-    letter-spacing:-1px;
+    font-weight:700;
+    letter-spacing:-1.5px;
 }
 
 .logo span{
-    color:#777;
+    color:var(--accent);
 }
 
 .nav-links{
     display:flex;
+    align-items:center;
     gap:30px;
     list-style:none;
 }
 
 .nav-links a{
+    position:relative;
     color:#999;
-    font-size:13px;
+    font-size:12px;
     font-weight:600;
     transition:.3s;
 }
 
+.nav-links a:after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:1px;
+    left:0;
+    bottom:-6px;
+    background:var(--accent);
+    transition:.3s;
+}
+
 .nav-links a:hover{
-    color:white;
+    color:#fff;
+}
+
+.nav-links a:hover:after{
+    width:100%;
 }
 
 .nav-cta{
-    padding:11px 19px;
-    border:1px solid var(--line);
+    border:1px solid var(--line2);
+    padding:11px 18px;
     border-radius:50px;
     font-size:12px;
     font-weight:700;
@@ -176,38 +240,99 @@ section{
 }
 
 .nav-cta:hover{
-    background:white;
-    color:black;
+    background:var(--accent);
+    color:#050505;
+    border-color:var(--accent);
 }
 
 .menu-btn{
     display:none;
     border:0;
     background:none;
-    color:white;
-    font-size:26px;
+    color:#fff;
+    width:42px;
+    height:42px;
     cursor:pointer;
+    position:relative;
+    z-index:6000;
 }
 
-/* HERO */
+.menu-icon{
+    width:24px;
+    height:18px;
+    position:absolute;
+    left:9px;
+    top:12px;
+}
+
+.menu-icon span{
+    position:absolute;
+    width:100%;
+    height:2px;
+    background:#fff;
+    left:0;
+    transition:.3s;
+}
+
+.menu-icon span:nth-child(1){
+    top:0;
+}
+
+.menu-icon span:nth-child(2){
+    top:8px;
+}
+
+.menu-icon span:nth-child(3){
+    top:16px;
+}
+
+.menu-btn.active .menu-icon span:nth-child(1){
+    top:8px;
+    transform:rotate(45deg);
+}
+
+.menu-btn.active .menu-icon span:nth-child(2){
+    opacity:0;
+}
+
+.menu-btn.active .menu-icon span:nth-child(3){
+    top:8px;
+    transform:rotate(-45deg);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero{
     min-height:100vh;
     display:flex;
     align-items:center;
-    padding-top:120px;
+    padding-top:150px;
     overflow:hidden;
 }
 
 .hero-grid{
     position:absolute;
     inset:0;
-    opacity:.06;
+    opacity:.07;
     background-image:
-    linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
-    background-size:70px 70px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+        linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);
+    background-size:75px 75px;
+    mask-image:linear-gradient(to bottom,#000,transparent 90%);
+    -webkit-mask-image:linear-gradient(to bottom,#000,transparent 90%);
+}
+
+.hero-glow{
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(141,92,255,.13),transparent 65%);
+    right:-180px;
+    top:5%;
+    pointer-events:none;
 }
 
 .hero-content{
@@ -222,73 +347,84 @@ section{
     border:1px solid var(--line);
     background:rgba(255,255,255,.025);
     border-radius:50px;
-    padding:9px 15px;
+    padding:10px 16px;
     color:#aaa;
     font-size:12px;
-    margin-bottom:28px;
-    animation:fadeUp .8s ease both;
+    animation:fadeUp .8s both;
 }
 
-.dot{
+.live-dot{
     width:7px;
     height:7px;
-    background:#fff;
     border-radius:50%;
-    box-shadow:0 0 15px #fff;
+    background:var(--accent);
+    box-shadow:0 0 15px var(--accent);
+    animation:pulse 2s infinite;
 }
 
 .hero h1{
     font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(55px,9vw,125px);
-    line-height:.88;
+    font-size:clamp(58px,9.5vw,125px);
+    line-height:.84;
     letter-spacing:-7px;
-    max-width:1050px;
-    animation:fadeUp .9s .1s ease both;
+    margin-top:30px;
+    max-width:1100px;
+    animation:fadeUp .9s .1s both;
 }
 
 .hero h1 .outline{
     color:transparent;
-    -webkit-text-stroke:1px #777;
+    -webkit-text-stroke:1px #686868;
 }
 
-.hero-text{
-    max-width:650px;
-    color:#999;
-    line-height:1.8;
-    margin-top:35px;
+.hero h1 .lime{
+    color:var(--accent);
+}
+
+.hero-description{
+    max-width:670px;
+    color:#929292;
+    line-height:1.85;
     font-size:15px;
-    animation:fadeUp .9s .2s ease both;
+    margin-top:38px;
+    animation:fadeUp .9s .2s both;
+}
+
+.hero-description strong{
+    color:#fff;
 }
 
 .hero-buttons{
     display:flex;
-    gap:14px;
-    margin-top:32px;
     flex-wrap:wrap;
-    animation:fadeUp .9s .3s ease both;
+    gap:12px;
+    margin-top:32px;
+    animation:fadeUp .9s .3s both;
 }
 
 .btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:9px;
-    padding:15px 23px;
+    gap:14px;
     border-radius:50px;
-    font-size:13px;
+    padding:15px 22px;
+    border:1px solid var(--line2);
+    font-size:12px;
     font-weight:700;
-    border:1px solid var(--line);
     transition:.35s;
+    cursor:pointer;
 }
 
 .btn-primary{
-    background:white;
-    color:black;
+    background:#fff;
+    color:#000;
+    border-color:#fff;
 }
 
 .btn-primary:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 40px rgba(255,255,255,.12);
+    transform:translateY(-4px);
+    box-shadow:0 15px 45px rgba(255,255,255,.12);
 }
 
 .btn-secondary{
@@ -296,844 +432,676 @@ section{
 }
 
 .btn-secondary:hover{
-    background:white;
-    color:black;
+    background:#fff;
+    color:#000;
+    transform:translateY(-4px);
 }
 
 .hero-stats{
     display:flex;
     gap:55px;
     margin-top:70px;
-    animation:fadeUp 1s .4s ease both;
+    animation:fadeUp 1s .4s both;
 }
 
 .stat-number{
-    font-family:"Space Grotesk";
-    font-size:30px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:32px;
     font-weight:700;
 }
 
+.stat-number span{
+    color:var(--accent);
+}
+
 .stat-text{
-    color:#666;
-    font-size:11px;
+    color:#5f5f5f;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
     margin-top:5px;
 }
 
-/* MARQUEE */
+/* Floating shapes */
+.hero-shape{
+    position:absolute;
+    pointer-events:none;
+}
+
+.shape-ring{
+    width:500px;
+    height:500px;
+    right:-140px;
+    top:22%;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:50%;
+    animation:spin 25s linear infinite;
+}
+
+.shape-ring:before{
+    content:"";
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:var(--accent);
+    border-radius:50%;
+    top:50px;
+    left:50px;
+    box-shadow:0 0 25px var(--accent);
+}
+
+.shape-ring2{
+    width:320px;
+    height:320px;
+    right:-50px;
+    top:32%;
+    border:1px dashed rgba(255,255,255,.08);
+    border-radius:50%;
+    animation:spinReverse 18s linear infinite;
+}
+
+.scroll-cue{
+    position:absolute;
+    bottom:30px;
+    left:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#555;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.scroll-cue span{
+    width:1px;
+    height:30px;
+    background:var(--accent);
+}
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
 
 .marquee{
+    overflow:hidden;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
-    overflow:hidden;
-    padding:22px 0;
+    padding:21px 0;
     white-space:nowrap;
 }
 
 .marquee-track{
     display:inline-flex;
-    animation:marquee 25s linear infinite;
+    animation:marquee 28s linear infinite;
 }
 
 .marquee-item{
-    display:inline-flex;
+    display:flex;
     align-items:center;
     gap:25px;
     margin-right:25px;
-    color:#777;
-    font-family:"Space Grotesk";
+    color:#707070;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
     font-weight:600;
-    font-size:13px;
     text-transform:uppercase;
     letter-spacing:2px;
 }
 
 .marquee-item b{
-    color:#fff;
+    color:var(--accent);
 }
 
-/* ABOUT */
+/* =========================================================
+   SECTION COMMON
+   ========================================================= */
+
+.section-label{
+    color:#666;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.section-title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(40px,5vw,68px);
+    line-height:.95;
+    letter-spacing:-3px;
+}
+
+.section-title span{
+    color:#777;
+}
+
+.section-description{
+    max-width:650px;
+    color:#777;
+    line-height:1.8;
+    font-size:13px;
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
 
 .about-grid{
     display:grid;
-    grid-template-columns:1fr 1.4fr;
+    grid-template-columns:.85fr 1.4fr;
     gap:80px;
     align-items:start;
 }
 
 .about-card{
+    min-height:380px;
     border:1px solid var(--line);
-    background:linear-gradient(145deg,#111,#090909);
     border-radius:25px;
     padding:35px;
-    min-height:350px;
+    background:
+        radial-gradient(circle at 85% 10%,rgba(141,92,255,.13),transparent 30%),
+        linear-gradient(145deg,#111,#080808);
     position:relative;
     overflow:hidden;
 }
 
-.about-card::before{
-    content:"";
+.about-card:after{
+    content:"IAMSHAH";
     position:absolute;
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    background:#fff;
-    opacity:.035;
-    filter:blur(50px);
-    right:-80px;
-    top:-80px;
+    font-family:"Space Grotesk";
+    font-size:75px;
+    font-weight:700;
+    color:rgba(255,255,255,.025);
+    transform:rotate(-90deg);
+    right:-100px;
+    bottom:40px;
 }
 
 .about-logo{
-    width:90px;
-    height:90px;
-    border:1px solid #333;
+    width:88px;
+    height:88px;
+    border:1px solid #303030;
     border-radius:25px;
     display:flex;
     align-items:center;
     justify-content:center;
     font-family:"Space Grotesk";
-    font-size:26px;
+    font-size:25px;
     font-weight:700;
-    margin-bottom:50px;
+    background:#0b0b0b;
+    margin-bottom:80px;
+}
+
+.about-logo span{
+    color:var(--accent);
 }
 
 .about-card h3{
     font-family:"Space Grotesk";
-    font-size:28px;
-    margin-bottom:12px;
+    font-size:27px;
+    margin-bottom:10px;
 }
 
 .about-card p{
-    color:#777;
-    font-size:13px;
+    color:#666;
+    font-size:12px;
     line-height:1.7;
 }
 
 .about-content p{
-    color:#999;
+    color:#8b8b8b;
     line-height:1.9;
-    margin-bottom:22px;
+    font-size:14px;
+    margin-top:25px;
+}
+
+.about-content p strong{
+    color:#fff;
 }
 
 .about-highlights{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    gap:12px;
     margin-top:35px;
 }
 
 .highlight{
-    padding:20px;
+    padding:19px;
     border:1px solid var(--line);
-    border-radius:16px;
-    background:#0b0b0b;
+    border-radius:15px;
+    background:#0a0a0a;
+    transition:.3s;
+}
+
+.highlight:hover{
+    transform:translateY(-4px);
+    border-color:#333;
 }
 
 .highlight strong{
     display:block;
-    font-size:14px;
-    margin-bottom:6px;
+    font-size:13px;
+    margin-bottom:5px;
 }
 
 .highlight span{
-    color:#666;
-    font-size:12px;
+    color:#606060;
+    font-size:11px;
 }
 
-/* SERVICES */
+/* =========================================================
+   SERVICES
+   ========================================================= */
+
+.services-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:40px;
+}
 
 .services-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    gap:15px;
     margin-top:55px;
 }
 
 .service-card{
-    position:relative;
+    min-height:330px;
     border:1px solid var(--line);
     border-radius:22px;
-    padding:32px;
-    background:linear-gradient(145deg,#101010,#090909);
+    padding:30px;
+    background:
+        linear-gradient(145deg,#111,#090909);
+    position:relative;
     overflow:hidden;
     transition:.4s;
 }
 
+.service-card:before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    background:var(--purple);
+    opacity:0;
+    filter:blur(80px);
+    right:-100px;
+    top:-100px;
+    transition:.4s;
+}
+
 .service-card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-7px);
     border-color:#333;
+}
+
+.service-card:hover:before{
+    opacity:.2;
 }
 
 .service-number{
     color:#555;
+    font-family:"Space Grotesk";
     font-size:11px;
     letter-spacing:2px;
-    margin-bottom:35px;
 }
 
 .service-icon{
-    width:48px;
-    height:48px;
-    border:1px solid #2b2b2b;
+    width:50px;
+    height:50px;
+    border:1px solid #292929;
     border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:20px;
-    margin-bottom:22px;
+    margin-top:30px;
+    background:#0a0a0a;
 }
 
 .service-card h3{
     font-family:"Space Grotesk";
-    font-size:23px;
-    margin-bottom:13px;
+    font-size:24px;
+    letter-spacing:-1px;
+    margin-top:20px;
+    margin-bottom:12px;
 }
 
 .service-card p{
-    color:#777;
-    font-size:13px;
+    color:#707070;
+    font-size:12px;
     line-height:1.7;
-    margin-bottom:20px;
+    max-width:520px;
 }
 
 .service-list{
-    list-style:none;
     display:flex;
     flex-wrap:wrap;
-    gap:8px;
+    gap:7px;
+    list-style:none;
+    margin-top:20px;
 }
 
 .service-list li{
-    font-size:10px;
-    color:#999;
-    border:1px solid #222;
-    padding:7px 9px;
+    border:1px solid #242424;
     border-radius:50px;
+    padding:6px 9px;
+    color:#777;
+    font-size:9px;
 }
 
-/* SKILLS */
+/* =========================================================
+   SKILLS
+   ========================================================= */
 
-.skills-wrap{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    margin-top:55px;
-}
-
-.skill-category{
-    margin-bottom:30px;
-}
-
-.skill-heading{
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid var(--line);
-    padding-bottom:14px;
-    margin-bottom:13px;
-}
-
-.skill-heading h4{
-    font-family:"Space Grotesk";
-    font-size:16px;
-}
-
-.skill-heading span{
-    color:#555;
-    font-size:11px;
-}
-
-.skill-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-}
-
-.skill-tag{
-    padding:10px 13px;
-    background:#0e0e0e;
-    border:1px solid var(--line);
-    color:#999;
-    border-radius:9px;
-    font-size:11px;
-    transition:.3s;
-}
-
-.skill-tag:hover{
-    color:#fff;
-    border-color:#444;
-    transform:translateY(-2px);
-}
-
-/* EXPERIENCE */
-
-.experience{
+.skills-section{
     background:#080808;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
 }
 
+.skills-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    margin-top:55px;
+}
+
+.skill-category{
+    margin-bottom:28px;
+}
+
+.skill-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:13px;
+    margin-bottom:13px;
+}
+
+.skill-heading h4{
+    font-family:"Space Grotesk";
+    font-size:15px;
+}
+
+.skill-heading span{
+    color:#555;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.skill-tag{
+    padding:9px 12px;
+    border:1px solid var(--line);
+    background:#0c0c0c;
+    border-radius:9px;
+    color:#8b8b8b;
+    font-size:10px;
+    transition:.3s;
+}
+
+.skill-tag:hover{
+    color:#050505;
+    background:var(--accent);
+    border-color:var(--accent);
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   EXPERIENCE
+   ========================================================= */
+
 .experience-box{
     border:1px solid var(--line);
     border-radius:25px;
-    padding:45px;
-    background:#0c0c0c;
+    padding:50px;
+    background:
+        radial-gradient(circle at 20% 50%,rgba(223,255,69,.05),transparent 30%),
+        #0c0c0c;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:30px;
+    align-items:center;
+    gap:50px;
+    margin-top:50px;
 }
 
 .experience-number{
     font-family:"Space Grotesk";
-    font-size:clamp(65px,9vw,110px);
-    line-height:.8;
+    font-size:clamp(75px,10vw,125px);
     font-weight:700;
-    letter-spacing:-6px;
+    line-height:.8;
+    letter-spacing:-7px;
+}
+
+.experience-number span{
+    color:var(--accent);
 }
 
 .experience-info{
-    max-width:500px;
+    max-width:550px;
 }
 
 .experience-info h3{
     font-family:"Space Grotesk";
     font-size:28px;
-    margin-bottom:12px;
+    margin-bottom:15px;
 }
 
 .experience-info p{
-    color:#777;
-    line-height:1.8;
+    color:#707070;
     font-size:13px;
+    line-height:1.8;
 }
 
-/* WORKFLOW */
+/* =========================================================
+   WORKFLOW
+   ========================================================= */
 
-.workflow{
+.workflow-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-top:55px;
+    gap:13px;
+    margin-top:50px;
 }
 
 .step{
     border:1px solid var(--line);
+    border-radius:19px;
     padding:28px;
-    border-radius:20px;
-    background:#0c0c0c;
-    transition:.3s;
+    background:#0b0b0b;
+    min-height:230px;
+    transition:.35s;
 }
 
 .step:hover{
     transform:translateY(-5px);
+    border-color:#333;
 }
 
-.step-num{
+.step-number{
     color:#555;
-    font-size:11px;
-    margin-bottom:45px;
+    font-family:"Space Grotesk";
+    font-size:10px;
+}
+
+.step-icon{
+    font-size:25px;
+    margin-top:38px;
 }
 
 .step h3{
     font-family:"Space Grotesk";
     font-size:20px;
-    margin-bottom:10px;
+    margin-top:17px;
 }
 
 .step p{
     color:#666;
-    font-size:12px;
+    font-size:11px;
     line-height:1.7;
+    margin-top:9px;
 }
 
-/* TOOLS */
+/* =========================================================
+   TOOLS
+   ========================================================= */
 
-.tools-grid{
+.tools-section{
+    padding-top:80px;
+}
+
+.tools{
     display:flex;
     flex-wrap:wrap;
-    gap:12px;
-    margin-top:45px;
+    gap:10px;
+    margin-top:40px;
 }
 
 .tool{
     border:1px solid var(--line);
     border-radius:50px;
-    padding:13px 18px;
-    color:#999;
-    font-size:12px;
+    padding:12px 16px;
+    color:#888;
+    font-size:11px;
     transition:.3s;
 }
 
 .tool:hover{
-    color:#fff;
-    background:#111;
-    transform:translateY(-2px);
+    color:#050505;
+    background:var(--accent);
+    border-color:var(--accent);
 }
 
-/* CONTACT */
+/* =========================================================
+   DIGITAL PRODUCTS
+   ========================================================= */
 
-.contact{
-    padding-bottom:70px;
-}
-
-.contact-box{
-    border:1px solid var(--line);
-    border-radius:30px;
-    padding:70px;
+.products-section{
     background:
-    radial-gradient(circle at 80% 20%,rgba(255,255,255,.06),transparent 30%),
-    #0b0b0b;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
+        radial-gradient(circle at 80% 30%,rgba(141,92,255,.07),transparent 35%);
 }
 
-.contact-box h2{
-    font-family:"Space Grotesk";
-    font-size:clamp(40px,7vw,80px);
-    letter-spacing:-4px;
-    line-height:.95;
-    margin-bottom:25px;
-}
-
-.contact-box p{
-    color:#777;
-    max-width:600px;
-    margin:0 auto;
-    line-height:1.8;
-    font-size:13px;
-}
-
-.contact-buttons{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:35px;
-}
-
-.contact-details{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:25px;
-    margin-top:35px;
-}
-
-.contact-details a{
-    color:#777;
-    font-size:12px;
-    transition:.3s;
-}
-
-.contact-details a:hover{
-    color:#fff;
-}
-
-/* FOOTER */
-
-footer{
-    border-top:1px solid var(--line);
-    padding:30px 0;
-}
-
-.footer-inner{
+.products-heading{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    gap:20px;
+    align-items:end;
+    gap:30px;
 }
 
-.footer-copy{
-    color:#555;
-    font-size:11px;
-}
-
-.footer-links{
-    display:flex;
-    gap:20px;
-}
-
-.footer-links a{
+.products-note{
+    max-width:400px;
     color:#666;
     font-size:11px;
-    transition:.3s;
+    line-height:1.7;
 }
 
-.footer-links a:hover{
-    color:white;
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:55px;
 }
 
-/* SCROLL REVEAL */
-
-.reveal{
-    opacity:0;
-    transform:translateY(35px);
-    transition:opacity .8s ease,transform .8s ease;
+.product-card{
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    background:#0c0c0c;
+    transition:.4s;
 }
 
-.reveal.active{
-    opacity:1;
-    transform:translateY(0);
+.product-card:hover{
+    transform:translateY(-7px);
+    border-color:#383838;
 }
 
-/* BACK TO TOP */
+.product-cover{
+    height:210px;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    background:
+        radial-gradient(circle at 75% 25%,rgba(223,255,69,.17),transparent 25%),
+        radial-gradient(circle at 25% 80%,rgba(141,92,255,.18),transparent 30%),
+        #111;
+}
 
-.top-btn{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:45px;
-    height:45px;
-    border:1px solid #333;
-    background:#111;
-    color:white;
-    border-radius:50%;
+.product-top{
+    display:flex;
+    justify-content:space-between;
+    color:#777;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.product-big{
+    font-family:"Space Grotesk";
+    font-size:55px;
+    font-weight:700;
+    letter-spacing:-5px;
+}
+
+.product-bottom-label{
+    color:#777;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.product-info{
+    padding:22px;
+}
+
+.product-info h3{
+    font-family:"Space Grotesk";
+    font-size:20px;
+    letter-spacing:-1px;
+}
+
+.product-info p{
+    color:#666;
+    font-size:11px;
+    line-height:1.7;
+    margin-top:10px;
+    min-height:55px;
+}
+
+.product-purchase{
     display:flex;
     align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    opacity:0;
-    pointer-events:none;
+    justify-content:space-between;
+    margin-top:20px;
+}
+
+.product-price{
+    font-family:"Space Grotesk";
+    font-size:20px;
+    font-weight:700;
+}
+
+.buy-btn{
+    background:var(--accent);
+    color:#050505;
+    border-radius:8px;
+    padding:10px 13px;
+    font-size:10px;
+    font-weight:800;
     transition:.3s;
-    z-index:900;
 }
 
-.top-btn.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
-/* ANIMATIONS */
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes marquee{
-    from{transform:translateX(0)}
-    to{transform:translateX(-50%)}
-}
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-    .nav-links{
-        position:absolute;
-        top:76px;
-        left:0;
-        width:100%;
-        background:#080808;
-        border-bottom:1px solid var(--line);
-        flex-direction:column;
-        gap:0;
-        padding:10px 5%;
-        display:none;
-    }
-
-    .nav-links.open{
-        display:flex;
-    }
-
-    .nav-links li{
-        padding:15px 0;
-        border-bottom:1px solid var(--line);
-    }
-
-    .nav-cta{
-        display:none;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    section{
-        padding:80px 0;
-    }
-
-    .hero{
-        min-height:auto;
-        padding-top:140px;
-        padding-bottom:90px;
-    }
-
-    .hero h1{
-        letter-spacing:-4px;
-    }
-
-    .hero-stats{
-        gap:25px;
-        flex-wrap:wrap;
-        margin-top:50px;
-    }
-
-    .about-grid{
-        grid-template-columns:1fr;
-        gap:40px;
-    }
-
-    .services-grid{
-        grid-template-columns:1fr;
-    }
-
-    .skills-wrap{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
-
-    .experience-box{
-        flex-direction:column;
-        align-items:flex-start;
-        padding:35px;
-    }
-
-    .workflow{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .contact-box{
-        padding:50px 25px;
-    }
-
-    .footer-inner{
-        flex-direction:column;
-        text-align:center;
-    }
-}
-
-@media(max-width:520px){
-
-    .hero h1{
-        font-size:55px;
-        letter-spacing:-3px;
-    }
-
-    .hero-text{
-        font-size:13px;
-    }
-
-    .about-highlights{
-        grid-template-columns:1fr;
-    }
-
-    .workflow{
-        grid-template-columns:1fr;
-    }
-
-    .experience-number{
-        font-size:75px;
-    }
-
-    .contact-box h2{
-        letter-spacing:-2px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-<header class="navbar" id="navbar">
-    <div class="container nav-inner">
-
-        <a href="#home" class="logo">iam<span>shah</span></a>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <a href="#contact" class="nav-cta">Let's Talk</a>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Open Menu">
-            ☰
-        </button>
-
-    </div>
-</header>
-
-
-<!-- HERO -->
-<section class="hero" id="home">
-
-    <div class="hero-grid"></div>
-
-    <div class="container hero-content">
-
-        <div class="hero-tag">
-            <span class="dot"></span>
-            Creative Digital Professional
-        </div>
-
-        <h1>
-            I CREATE<br>
-            <span class="outline">DIGITAL</span><br>
-            EXPERIENCES.
-        </h1>
-
-        <p class="hero-text">
-            I'm Suhail Shah — known as <strong>iamshah</strong>.
-            I help businesses and creators build better digital experiences
-            through video editing, graphic design, AI content, websites,
-            social media and automation.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#services" class="btn btn-primary">
-                Explore My Work →
-            </a>
-
-            <a href="#contact" class="btn btn-secondary">
-                Start a Project
-            </a>
-        </div>
-
-        <div class="hero-stats">
-
-            <div>
-                <div class="stat-number">03+</div>
-                <div class="stat-text">Years Experience</div>
-            </div>
-
-            <div>
-                <div class="stat-number">09+</div>
-                <div class="stat-text">Core Skill Areas</div>
-            </div>
-
-            <div>
-                <div class="stat-number">∞</div>
-                <div class="stat-text">Creative Possibilities</div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- MARQUEE -->
-<div class="marquee">
-
-    <div class="marquee-track">
-
-        <div class="marquee-item">
-            Video Editing <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Graphic Design <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            AI Content <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            WordPress <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Social Media <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Automation <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Digital Marketing <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Video Editing <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Graphic Design <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            AI Content <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            WordPress <b>✦</b>
-        </div>
-
-        <div class="marquee-item">
-            Social Media <b>✦</b>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ABOUT -->
-<section id="about">
-
-    <div class="container">
-
-        <div class="about-grid reveal">
-
-            <div class="about-card">
-
-                <div class="about-logo">
-                    IS
-                </div>
-
-                <h3>Suhail Shah</h3>
-
-                <p>
-                    Creative Digital Professional<br>
-                    Founder / Creator — iamshah
-                </p>
-
-            </div>
-
-            <div class="about-content">
-
-                <div class="section-label">01 — About Me</div>
-
-                <h2 class="section-title">
-                    Creativity meets<br>
-                    <span>technology.</span>
-                </h2>
-
-                <p>
-                    I'm Suhail Shah, a creative digital professional with
-                    <strong>3+ years of experience</strong> working across
-                    content creation, design, websites, social media,
-                    AI tools and business automation.
-                </p>
-
-                <p>
-                    My goal is simple: combine creativity and technology
-                    to help creators, brands and businesses communicate
-                    better, work smarter and build a stronger digital presence.
-                </p>
-
-                <div class="about-highlights">
-
-                    <div class="highlight">
-                        <strong>Creative</strong>
-                        <span>Design & Content Focus</span>
-                    </div>
-
-                    <div class="highlight">
-                        <strong>Digital</strong>
-    
+.buy-btn:hover{
+    transform:tr
